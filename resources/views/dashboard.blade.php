@@ -7,7 +7,7 @@
                 </h2>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="ml-3 text-indigo-500">Sign Out</button>
+                    <button type="submit" class="ml-3 text-indigo-500">Ausloggen</button>
                 </form>
             </div>
             <div class="-my-6">
