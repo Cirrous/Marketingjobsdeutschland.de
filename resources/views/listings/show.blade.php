@@ -29,11 +29,15 @@
                     <iframe width="480" height="300" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ $placeId }}&key={{$apiKey}}"></iframe>
                     <div>
                         <h2 class="text-lg font-medium text-black title-font">Öffnungszeiten:</h2>
-                        <p>Mo-Fr: 08:00 - 18:00
-                            <br>
-                            Sa: 08:00 - 14:00
-                            <br>
-                            So: Geschlossen
+                        @if($openingHours)
+                            <ul>
+                                @foreach($openingHours as $day)
+                                    <li>{{ $day }}</li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>Keine Öffnungszeiten verfügbar</p>
+                        @endif
                         </p>
                     </div>
                 </div>

@@ -49,6 +49,7 @@ class ListingController extends Controller
     public function show(Listing $listing, Request $request)
     {
         $geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+        $placesUrl = 'https://maps.googleapis.com/maps/api/place/details/json';
         $apiKey = 'AIzaSyDHTyHRxY3KNf8uVe91cEnewF_K2pLN8TM';
     
         $address = $listing->location;
@@ -59,14 +60,29 @@ class ListingController extends Controller
         ]);
     
         $placeId = null;
+        $openingHours = null;
         if ($response->successful()) {
             $data = $response->json();
             if (!empty($data['results'])) {
                 $placeId = $data['results'][0]['place_id'];
             }
         }
+
+        if ($placeId) {
+            $response = Http::get($placesUrl, [
+                'place_id' => $placeId,
+                'key' => $apiKey,
+            ]);
     
-        return view('listings.show', compact('listing', 'placeId','apiKey'));
+            if ($response->successful()) {
+                $data = $response->json();
+                if (!empty($data['result']['opening_hours']['weekday_text'])) {
+                    $openingHours = $data['result']['opening_hours']['weekday_text'];
+                }
+            }
+        }
+    
+        return view('listings.show', compact('listing', 'placeId','apiKey', 'openingHours'));
     }
 
     public function apply(Listing $listing, Request $request)
