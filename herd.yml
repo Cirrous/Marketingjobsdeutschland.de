@@ -1,0 +1,8 @@
+integrations:
+  forge:
+    default:
+      site-id: 2598267
+      server-id: 880677
+    marketingjobsdeutschland.de:
+      site-id: 2598268
+      server-id: 880677

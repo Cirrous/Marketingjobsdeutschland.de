@@ -24,7 +24,7 @@
                         {!! $listing->content !!}
                     </div>
                     <div class="w-full md:w-2/6 pl-4 justify-between h-full">
-                    <a href="{{ route('listings.apply', $listing->slug) }}" class="block text-center tracking-wide bg-white text-indigo-500 text-sm font-medium title-font py-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white uppercase">https://platzhalter/linkzurbewerbung.com</a>
+                    <a href="{{ route('listings.apply', $listing->slug) }}" class="block text-center tracking-wide bg-white text-indigo-500 text-sm font-medium title-font py-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white uppercase">{{$listing->apply_link}}</a>
                     <a class="block text-center my-4 tracking-wide bg-white text-indigo-500 text-sm font-medium title-font py-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white uppercase" href="tel:+491234567890"> +49 (0)123 456 789</a>
                     <iframe width="480" height="300" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ $placeId }}&key={{$apiKey}}"></iframe>
                     <div>
